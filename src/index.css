@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .centerCW {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav_boxShadow {
+        box-shadow: 0 0 40px rgba(247, 62, 38, .24);
+    }
+
+    .setAllura {
+        font-size: 1.8rem;
+        margin-bottom: -1.2rem;
+        color: #fa6741;
+    }
+
+    .setMukta {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 0.15rem;
+        margin-top: 1rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .bg_imageWrapper {
+        height: 100vh;
+        position: relative;
+        display: block;
+    }
+
+    .bg_imageWrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, .35) 53%, rgba(0, 0, 0, 0) 77%, rgba(0, 0, 0, 0) 96%, #fff);
+    }
+
+    .bg_image {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        animation-name: magnify;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes magnify {
+        0% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1.4);
+        }
+    }
+
+    .bg_cloud {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 30%;
+        width: 100%;
+    }
+
+    .arrow_wrapper {
+        z-index: 10;
+        padding: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        font-size: 1.5rem;
+        color: white;
+        border: 1px solid white;
+    }
+
+    .arrow_wrapper:hover {
+        color: #fa6741;
+        background-color: white;
+    }
+
+    .left_arrow_wrapper {
+        left: 3rem;
+    }
+
+    .right_arrow_wrapper {
+        right: 3rem;
+    }
+
+    .bg_center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bg_line {
+        font-family: 'Allura', cursive;
+        font-size: 1.8rem;
+        margin-bottom: -1.2rem;
+    }
+
+    .bg_placeName {
+        font-family: 'Mukta', sans-serif;
+        font-size: 8rem;
+        letter-spacing: 0.15rem;
+        animation-name: zoomDown;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes zoomDown {
+        0% {
+            transform: scale(2);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .bg_btn_lm {
+        font-family: 'Mukta', sans-serif;
+        font-size: medium;
+        color: black;
+        background-color: white;
+        padding: 0.6rem 1.8rem;
+        border-radius: 90px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        transition: all 0.4s;
+    }
+
+    .bg_btn_lm:hover {
+        background-image: linear-gradient(65deg, #ff7611, #fd311b);
+        color: white;
+    }
+
+    .card_outerdiv {
+        display: grid;
+        grid-template-rows: auto auto;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .boxShadow1 {
+        box-shadow: 0 0 30px rgba(0, 0, 0, .1);
+    }
+
+    .clip {
+        clip-path: polygon(0 0, 100% 0, 88% 100%, 0 99%);
+        background: linear-gradient(128deg, #fc7c31 0%, #fc7c31 47%, #fc7c31 81%, #ff3427 100%);
+    }
+
+    .gradOrange {
+        background-image: linear-gradient(315deg, #ff3427, #fc7c31 83%);
+    }
+
+    .TrandformCenter {
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .TrandformPlaceholder {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .inpBox input:is(:focus, :valid) {
+        border: 2px solid #fa6741;
+    }
+
+    .inpBox input:is(:focus, :valid)+label {
+        top: 0;
+        padding: 0 4px;
+        color: #fa6741;
+        background: white;
+    }
+
+    .Tours_Banner {
+        min-height: 450px;
+        background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url("../public/tours/All_Tours.jpg");
+        background-size: auto, cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    .boxShadow2{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+}
