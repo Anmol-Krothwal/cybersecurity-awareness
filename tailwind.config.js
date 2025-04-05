@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         'Mukta': ['Mukta', 'sans-serif'],
         'Allura': ['Allura', 'cursive']
+      },
+      screens: {
+        'max-w-1150': { max: '1150px' },
       }
     },
   },
