@@ -1,9 +1,6 @@
-import Logo_Light from "../assets/Image/Logo_Light.png";
-import Logo_Dark from "../assets/Image/Logo_Dark.png";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
-import user from "../assets/Image/user.png"
 import { useLogoutUserMutation } from "../Slice/AuthSlice";
 import { FaBars, FaTimes } from "react-icons/fa"; // Using react-icons for burger menu
 
@@ -44,7 +41,7 @@ const Navbar = () => {
     return <>
         <div className={`h-[5rem] w-full fixed top-0 left-0 z-20 grid grid-cols-4 ${navBg === 'white' ? 'nav_boxShadow bg-white' : 'bg-transparent'} transition-all duration-700`}>
             <Link to="/" className="col-span-1 w-full md:w-[55%] h-[3rem] my-auto lg:px-[2rem] md:px-[1rem] px-[0.5rem]">
-                <img src={navBg === 'transparent' ? Logo_Light : Logo_Dark} alt="logo" className="h-full w-full object-contain" />
+                <img src={navBg === 'transparent' ? `/assets/Image/Logo_Light.png` : `/assets/Image/Logo_Dark.png`} alt="logo" className="h-full w-full object-contain" />
             </Link>
             <div className={`col-span-2 list-none flex items-center justify-center hidden lg:flex space-x-10 text-lg font-medium font-Mukta px-[3rem] ${navBg === 'transparent' ? 'text-white' : 'text-black'} transition-all duration-700`}>
                 <Link to="/tours" className="hover:text-[#fa6741] cursor-pointer">Tours</Link>
@@ -58,7 +55,7 @@ const Navbar = () => {
                         <div className="relative inline-block">
                             {/* User Icon */}
                             <img
-                                src={user}
+                                src={`/assets/Image/user.png`}
                                 alt="User Icon"
                                 onClick={toggleDropdown}
                                 className="h-10 w-10 rounded-full cursor-pointer object-cover"

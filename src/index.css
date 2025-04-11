@@ -206,12 +206,49 @@
 
     .Tours_Banner {
         min-height: 450px;
-        background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url("../public/tours/All_Tours.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url("../public/assets/Image/TourCompBg.jpg");
         background-size: auto, cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        background-position: center bottom;
     }
-    .boxShadow2{
+
+    .boxShadow2 {
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
+
+    .Tours_Banner_ImageWrapper {
+        position: relative;
+        min-height: 450px;
+        overflow: hidden;
+    }
+
+    .Tours_Banner_Image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        /* 👈 This focuses on the bottom part */
+        z-index: 0;
+        /* Optional: for fixed-like scroll effect */
+        transform: translateZ(0);
+        will-change: transform;
+    }
+
+    .heading-secondary {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        background-image: -webkit-gradient(linear, left top, right top, from(#fc7b31c2), to(#ff3427));
+        background-image: linear-gradient(to right, #fc7b31c2, #ff3427);
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: 0.1rem;
+        line-height: 1.3;
+        display: inline-block;
+    }
+
 }

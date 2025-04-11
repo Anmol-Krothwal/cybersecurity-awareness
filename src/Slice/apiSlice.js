@@ -6,13 +6,16 @@ const baseURL = 'http://localhost:5000/api/v1/tours';
 // Define our single API slice object
 export const apiSlice = createApi({
   reducerPath: 'my_api',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
+  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
   endpoints: builder => ({
     getTours: builder.query({
       query: (filter) => ({
-        url:'/',
+        url: '/',
         params: filter,
       })
+    }),
+    getTourById: builder.query({
+      query: (id) => `/${id}`
     }),
     getTopTours: builder.query({
       query: () => '/top5-cheapTours'
@@ -21,4 +24,4 @@ export const apiSlice = createApi({
 })
 
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetToursQuery, useGetTopToursQuery } = apiSlice
+export const { useGetToursQuery, useGetTopToursQuery, useGetTourByIdQuery } = apiSlice

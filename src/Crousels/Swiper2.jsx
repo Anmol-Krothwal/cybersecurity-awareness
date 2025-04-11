@@ -1,7 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, Keyboard } from "swiper/modules";
-import tour_1_1 from "../../public/tours/tour-1-1.jpg";
 import {formatDate} from "../utils/utils.js";
 import { FaLocationDot, FaCalendarDays, FaFlag, FaUser } from "react-icons/fa6";
 
@@ -38,12 +37,13 @@ export default function Swiper2({Cdata}) {
                     return <SwiperSlide key={idx}>
                         <div className="h-full rounded-lg grid grid-rows-6 overflow-hidden shadow-md">
                             <div className="row-span-3 bg-green-50 relative overflow-hidden">
-                                <img src={tour_1_1} alt="tourImg" className="h-full w-full object-cover hover:scale-125 transition-all duration-300" />
+                                <img src={`/assets/Image/tours/${val.images[0]}`} alt="tourImg" className="h-full w-full object-cover hover:scale-125 transition-all duration-300" />
                                 <span className="absolute left-0 bottom-0 py-1 px-6 clip text-lg font-Mukta tracking-wide font-bold text-white">{val.name}</span>
                             </div>
                             <div className="row-span-3 flex flex-col justify-between bg-white p-4">
-                                <div>
-                                    <span className="p-1 bg-blue-800 font-semibold text-white text-sm rounded-sm">{val.ratingsAverage}</span>
+                                <div className="flex flex-cols justify-between">
+                                    <div className="text-[0.8rem] flex justify-left items-center font-semibold border border-2 rounded-sm px-2">{val.duration} days tour</div>
+                                    <span className="p-1 bg-blue-800 font-semibold text-white text-sm rounded-sm">{val.ratingsAverage}⭐</span>
                                 </div>
                                 <div className="font-sans text-sm mb-1">{val.summary}</div>
                                 <div className="grid grid-cols-2 px-8">

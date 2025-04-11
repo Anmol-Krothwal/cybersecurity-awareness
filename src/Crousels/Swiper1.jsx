@@ -7,11 +7,6 @@ import "swiper/css/effect-fade";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 import 'animate.css';
 
-import bg_1 from "../assets/Image/bg_1.jpg";
-import bg_2 from "../assets/Image/bg_2.jpg";
-import bg_3 from "../assets/Image/bg_3.jpg";
-import bg_cloud from "../assets/Image/bg_cloud.png";
-
 // import required modules
 import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 
@@ -40,8 +35,8 @@ export default function Swiper1() {
                 </div>
                 <SwiperSlide>
                     <div className="bg_imageWrapper">
-                        <img src={bg_1} alt="bg_1" className="bg_image" />
-                        <img src={bg_cloud} alt="bg_cloud" className="bg_cloud" />
+                        <img src={`/assets/Image/bg_1.jpg`} alt="bg_1" className="bg_image" />
+                        <img src={`/assets/Image/bg_cloud.png`} alt="bg_cloud" className="bg_cloud" />
                         <div className="bg_center">
                             <div className="bg_line animate__animated animate__slideInUp">Visit the beautiful landscapes</div>
                             <div className="bg_placeName">Norway</div>
@@ -51,8 +46,8 @@ export default function Swiper1() {
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="bg_imageWrapper">
-                        <img src={bg_2} alt="bg_1" className="bg_image" />
-                        <img src={bg_cloud} alt="bg_cloud" className="bg_cloud" />
+                        <img src={`/assets/Image/bg_2.jpg`} alt="bg_1" className="bg_image" />
+                        <img src={`/assets/Image/bg_cloud.png`} alt="bg_cloud" className="bg_cloud" />
                         <div className="bg_center">
                             <div className="bg_line animate__animated animate__slideInUp">Find the excitement wherever you go</div>
                             <div className="bg_placeName">Switzerland</div>
@@ -62,8 +57,8 @@ export default function Swiper1() {
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="bg_imageWrapper">
-                        <img src={bg_3} alt="bg_1" className="bg_image" />
-                        <img src={bg_cloud} alt="bg_cloud" className="bg_cloud" />
+                        <img src={`/assets/Image/bg_3.jpg`} alt="bg_1" className="bg_image" />
+                        <img src={`/assets/Image/bg_cloud.png`} alt="bg_cloud" className="bg_cloud" />
                         <div className="bg_center">
                             <div className="bg_line animate__animated animate__slideInUp">Find your perfect vacation</div>
                             <div className="bg_placeName">Salerno</div>

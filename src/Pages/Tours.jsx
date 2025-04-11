@@ -2,14 +2,11 @@ import { useGetToursQuery } from "../Slice/apiSlice";
 import Navbar from "../Components/Navbar";
 import { formatDate } from "../utils/utils";
 import { FaLocationDot, FaCalendarDays, FaFlag, FaUser } from "react-icons/fa6";
-import sample1 from "../assets/Image/sample1.jpg"
-import sample2 from "../assets/Image/sample2.jpg"
 import { Link } from "react-router-dom";
 import Pagination from "../Components/Pagination";
 import { useEffect, useState } from "react";
 
 const Tours = () => {
-    //const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState({ page: 1 });
     const { duration, maxGroupSize, ratingsAverage, ...queryParams } = filter;
     const {
@@ -98,7 +95,6 @@ const Tours = () => {
         }
 
         setFilter(updatedFilter);
-        console.log(updatedFilter);
     };
 
     return <div className="h-screen w-full">
@@ -239,8 +235,8 @@ const Tours = () => {
                 {isSuccess && Array.isArray(data?.data) && data.data.length > 0 ? (
                     data.data.map((val, idx) => {
                         return <div key={idx} className="w-full h-[11rem] flex border border-[#a3a8a376] rounded-md overflow-hidden my-1 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-md">
-                            <div className="w-4/12 h-full bg-green-100">
-                                <img src={`./tours/${val.images[0]}`} alt="img" className="h-full w-full object-cover" />
+                            <div className="w-4/12 h-full bg-gray-100">
+                                <img src={`/assets/Image/tours/${val.images[0]}`} alt="img" className="h-full w-full object-cover" />
                             </div>
                             <div className="w-8/12 py-2 px-4 font-Mukta flex flex-col justify-evenly">
                                 <div>
@@ -271,7 +267,7 @@ const Tours = () => {
                                         <span className="font-bold text-[#fc7c31] text-xl">${val.price}</span>
                                         <span className="text-[#787879] text-xs"> / Person</span>
                                     </div>
-                                    <Link to={`/tours/${val._id}`} className="px-[1.2rem] py-[0.4rem] gradOrange text-white font-semibold rounded-sm text-sm cursor-pointer mr-4">Details</Link>
+                                    <Link to={`/tours/${val.id}`} className="px-[1.2rem] py-[0.4rem] gradOrange text-white font-semibold rounded-sm text-sm cursor-pointer mr-4">Details</Link>
                                 </div>
                             </div>
                         </div>
@@ -284,10 +280,10 @@ const Tours = () => {
             </div>
             <div className="col-span-2">
                 <div className="mb-6">
-                    <img src={sample1} alt="ad1"/>
+                    <img src={`/assets/Image/sample1.jpg`} alt="ad1"/>
                 </div>
                 <div className="my-6">
-                    <img src={sample2} alt="ad2"/>
+                    <img src={`/assets/Image/sample2.jpg`} alt="ad2"/>
                 </div>
             </div>
         </div>

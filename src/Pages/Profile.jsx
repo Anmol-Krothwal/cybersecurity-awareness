@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import user from "../assets/Image/user.png";
 import Navbar from "../Components/Navbar";
 import { FaPen, FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
@@ -97,7 +96,7 @@ const Profile = () => {
             <div className="h-auto w-auto bg-white p-6 rounded-lg shadow-lg relative">
                 {/* Profile Image */}
                 <img
-                    src={user}
+                    src={`/assets/Image/user.png`}
                     alt="User Icon"
                     className="h-24 w-24 rounded-full object-cover absolute left-1/2 -top-12 transform -translate-x-1/2 border-2 border-gray-300"
                 />
