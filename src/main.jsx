@@ -2,11 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import {store} from './Store.js';
+import { store } from './Store.js';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from './Components/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <App />
-  </Provider>,
-)
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </Provider>
+);

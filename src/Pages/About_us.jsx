@@ -1,21 +1,64 @@
-import Navbar from "../Components/Navbar";
+import NavbarPage from "../Components/NavbarPage";
+import FooterTeen from "../components/FooterTeen"; // ✅ Import Footer
 
 const About_us = () => {
-    return <>
-        <div className="h-screen w-full">
-            <Navbar />
-            <div className="h-5/6 Tours_Banner flex flex-col justify-center items-center text-white mb-[3rem]">
-                <div className="setAllura font-Allura text-white font-bold ">Journey of travellio</div>
-                <div className="setMukta font-Mukta text-[6rem] font-bold">About Us</div>
-            </div>
-            <div className="w-full p-[3rem] flex">
-                <div className="w-1/2">
-                    <div className="setAllura font-Allura font-bold ">Take a tour</div>
-                    <div className="setMukta font-Mukta text-[3rem] font-bold">Watch our Video</div>
-                </div>
-                <div className="w-1/2">2</div>
-            </div>
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-purple-100 text-gray-900">
+      <NavbarPage />
+
+      <section className="flex-grow pt-8 px-6 md:px-16 lg:px-32">
+        <h1 className="text-center text-5xl font-extrabold text-purple-800 mb-6 drop-shadow-md">
+          👋 Welcome to Cyber Guide Hub!
+        </h1>
+        <p className="text-lg text-center max-w-3xl mx-auto font-medium">
+          We are on a mission to help <strong>everyone</strong> – kids, adults, and seniors – stay safe online. 🛡️
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-10 mt-12 items-center">
+          {/* Left */}
+          <div>
+            <h2 className="text-3xl font-bold text-blue-800 mb-4">🌟 What We Do</h2>
+            <p className="text-lg leading-relaxed mb-4">
+              Cyber Guide Hub offers games, stories, and challenges that teach you how to spot scams, protect your information, and be safe online — in a fun and easy way!
+            </p>
+
+            <h2 className="text-3xl font-bold text-blue-800 mb-4">👨‍👩‍👧 Who Is It For?</h2>
+            <ul className="list-disc ml-6 space-y-2 text-lg">
+              <li><strong>Kids (12–17):</strong> Learn through games and stories 🎮</li>
+              <li><strong>Adults (18–65):</strong> Practice with real-world scenarios 💼</li>
+              <li><strong>Older Adults (65+):</strong> Simple, step-by-step guidance 👵</li>
+            </ul>
+          </div>
+
+           {/* Right */}
+          <div className="flex justify-center">
+            <img
+              src="/assets/Image/aboutus1.png"
+              alt="Cyber Safe Family"
+              className="w-1/2 md:w-1/3 lg:w-2/4 rounded-xl shadow-lg"
+            />
+          </div>
         </div>
-    </>
-}
+       
+
+       
+
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <h2 className="text-3xl font-bold text-green-700 mb-2">🦸‍♀️ Become a Cyber Hero Today!</h2>
+          <p className="text-lg mb-4">Explore our activities and build your online safety skills now!</p>
+          <a
+            href="/"
+            className="inline-block bg-purple-600 text-white px-6 py-3 rounded-full text-lg hover:bg-purple-700 transition duration-300 m-12"
+          >
+            Go to Home Page
+          </a>
+        </div>
+      </section>
+
+      <FooterTeen /> {/* ✅ Footer added here at the bottom of page */}
+    </div>
+  );
+};
+
 export default About_us;
