@@ -1,17 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { apiSlice } from './Slice/apiSlice'
-import { AuthSlice } from './Slice/AuthSlice'
-import userReducer from "./Slice/userSlice"
+// src/Store.js
+import { configureStore } from '@reduxjs/toolkit';
+import { AuthSlice } from './Slice/AuthSlice';   // named import
+import { apiSlice } from './Slice/apiSlice';     // named import
+// If you have a user reducer, keep it; otherwise remove this line
+// import userReducer from './Slice/userSlice';
 
-// Automatically adds the thunk middleware and the Redux DevTools extension
 export const store = configureStore({
-  // Automatically calls `combineReducers`
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
     [AuthSlice.reducerPath]: AuthSlice.reducer,
-    user: userReducer
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    // user: userReducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(apiSlice.middleware,AuthSlice.middleware)
-})
-
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(AuthSlice.middleware, apiSlice.middleware),
+});

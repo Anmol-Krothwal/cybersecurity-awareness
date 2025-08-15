@@ -1,25 +1,28 @@
-// src/Slice/AuthSlice.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// Use /api in prod; fallback to localhost only for local dev
 const API_BASE =
-  (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
-  '/api';
+  (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) || '/api';
 
-// IMPORTANT: baseUrl is "/api", so endpoint URLs below should be "/auth/..."
-// (Do NOT prefix with /api again or you'll get /api/api/...)
 export const AuthSlice = createApi({
   reducerPath: 'authapi',
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE,
     credentials: 'include',
+    prepareHeaders: (headers) => {
+      if (!headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     signupUser: builder.mutation({
       query: (body) => ({ url: '/auth/signup', method: 'POST', body }),
     }),
     loginUser: builder.mutation({
-      query: (body) => ({ url: '/auth/login', method: 'POST', body }),
+      query: ({ email, password }) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body: { email, password },
+      }),
     }),
     logoutUser: builder.mutation({
       query: () => ({ url: '/auth/logout', method: 'POST' }),
