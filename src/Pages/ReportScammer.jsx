@@ -7,7 +7,7 @@ import Header from "../Components/ReportScammer/Header";
 
 // ✅ Import Navbar and Footer
 import NavbarPage from "../Components/NavbarPage";    // ✅ import your navbar
-import FooterTeen from "../components/FooterTeen";     // ✅ import your footer
+import FooterTeen from "../Components/FooterTeen";     // ✅ import your footer
 
 const ReportScammer = () => {
   const [index, setIndex] = useState(0);

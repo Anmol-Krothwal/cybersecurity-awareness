@@ -1,7 +1,7 @@
 import React from "react";
 import GameLogic from "../Components/GameLogic";
 import NavbarPage from "../Components/NavbarPage";    // ✅ import your navbar
-import FooterTeen from "../components/FooterTeen";     // ✅ import your footer
+import FooterTeen from "../Components/FooterTeen";     // ✅ import your footer
 
 const FakeVsRealGame = () => {
   return (

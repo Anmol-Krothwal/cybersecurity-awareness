@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import VideoPlayer from '../Components/VideoPlayer';
 import ScamSpottingGame from '../Components/ScamSpottingGame';
 import NavbarPage from "../Components/NavbarPage";
-import FooterTeen from "../components/FooterTeen";
+import FooterTeen from "../Components/FooterTeen";
 
 const ScammerSpotGame = () => {
   const [videoCompleted, setVideoCompleted] = useState(false);

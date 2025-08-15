@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatProfile from './ChatProfile';
 import questions from './questions';
 import NavbarPage from '/src/Components/NavbarPage';
-import FooterTeen from '/src/components/FooterTeen';
+import FooterTeen from '/src/Components/FooterTeen';
 
 // 🔁 Shuffle utility
 const shuffleArray = (array) => {

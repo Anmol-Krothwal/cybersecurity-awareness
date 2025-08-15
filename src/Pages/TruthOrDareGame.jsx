@@ -4,7 +4,7 @@ import InteractiveChallenge from "../Components/InteractiveChallenge";
 import Confetti from 'react-confetti';
 import { useWindowSize } from '@react-hook/window-size';
 import NavbarPage from "../Components/NavbarPage";    
-import FooterTeen from "../components/FooterTeen";     
+import FooterTeen from "../Components/FooterTeen";     
 
 const allChallenges = {
   truth: [

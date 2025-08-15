@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 import NavbarPage from "../Components/NavbarPage";    // ✅ import your navbar
-import FooterTeen from "../components/FooterTeen";     // ✅ import your footer
+import FooterTeen from "../Components/FooterTeen";     // ✅ import your footer
 
 const allItems = [
   { label: "📍 Address: 123 Apple Street, London", risky: true },

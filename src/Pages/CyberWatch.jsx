@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import newsData from "../data/cyberNewsData";
 import NewsCard from "../components/NewsCard";
 import Navbar from "../Components/NavbarPage";
-import FooterTeen from "../components/FooterTeen"; // ✅ Import Footer
+import FooterTeen from "../Components/FooterTeen"; // ✅ Import Footer
 
 const CyberWatch = () => {
   const [filter, setFilter] = useState("All");

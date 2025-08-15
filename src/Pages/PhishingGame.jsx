@@ -4,7 +4,7 @@ import Confetti from "react-confetti";
 import { motion } from "framer-motion";
 import { useTheme } from "../Components/Themecontext";
 import NavbarPage from "../Components/NavbarPage";    // ✅ import your navbar
-import FooterTeen from "../components/FooterTeen"; 
+import FooterTeen from "../Components/FooterTeen"; 
 
 const phishingQuestions = [
   {

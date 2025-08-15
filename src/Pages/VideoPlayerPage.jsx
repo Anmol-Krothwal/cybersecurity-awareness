@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavbarPage from '../Components/NavbarPage';
-import FooterTeen from '../components/FooterTeen';
+import FooterTeen from '../Components/FooterTeen';
 import VideoGallery from '../Components/VideoGallery';
 
 const VideoPlayerPage = () => {
