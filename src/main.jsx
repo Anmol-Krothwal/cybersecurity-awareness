@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { store } from './Store.js';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from './Components/ThemeContext';
+import { ThemeProvider } from './Components/Themecontext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
