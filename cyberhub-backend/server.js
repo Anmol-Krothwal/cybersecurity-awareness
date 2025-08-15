@@ -34,7 +34,7 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGINS
       ? process.env.CORS_ORIGINS.split(",").map((s) => s.trim())
-      : true, // same-origin friendly; avoid "*" with credentials
+      : true,
     credentials: true,
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   })
@@ -57,28 +57,23 @@ app.get("/api/ready", (_req, res) => {
   const ready = mongoose.connection.readyState === 1;
   res.status(ready ? 200 : 503).json({ dbConnected: ready });
 });
+app.get("/api/ping", (_req, res) => res.json({ ok: true, t: Date.now() })); // added
 
 app.use("/api/auth", authRoutes);
 app.use("/api/parent", parentRoutes);
+app.use("/api/parents", parentRoutes); // added alias
 app.use("/api/tips", tipsRoutes({ tipsReadLimiter, tipsWriteLimiter }));
 app.use("/api/contact", contactRoutes);
 console.log("➡️  /api/contact route mounted");
 
 /* ---------------- Serve frontend (SPA) ---------------- */
-/**
- * IMPORTANT:
- * We serve from cyberhub-backend/dist (same folder as this file).
- * Make sure your frontend build has been copied into this folder:
- *   npm run build (frontend) -> copy ./dist/* -> ./cyberhub-backend/dist/
- */
-const distPath = path.join(__dirname, "dist"); // <-- correct for backend/dist
+const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath, { index: false }));
 
 // SPA fallback for anything NOT starting with /api/
 app.get(/^(?!\/api\/).*/, (_req, res) => {
   res.sendFile(path.join(distPath, "index.html"), (err) => {
     if (err) {
-      // If the build isn't present yet, show a basic OK so health checks pass
       res.status(200).send("OK");
     }
   });
@@ -115,7 +110,7 @@ mongoose
       console.log(`🚀 Server running on port ${PORT}`)
     );
 
-    // Graceful shutdown for containers
+    // Graceful shutdown
     const shutdown = (signal) => {
       console.log(`${signal} received. Closing server...`);
       server.close(() => {
