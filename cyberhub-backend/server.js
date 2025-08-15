@@ -52,7 +52,12 @@ const tipsReadLimiter = rateLimit({ windowMs: 60 * 1000, limit: 60 });
 const tipsWriteLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10 });
 
 /* ---------------- Health checks ---------------- */
-app.get("/", (_req, res) => res.status(200).send("OK"));
+app.get("/", (_req, res) => {
+  const indexPath = path.join(distPath, "index.html");
+  res.sendFile(indexPath, (err) => {
+    if (err) res.status(200).send("OK"); // fallback if dist missing
+  });
+});
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 app.get("/api/live", (_req, res) => res.send("live"));
 app.get("/api/ready", (_req, res) => {
