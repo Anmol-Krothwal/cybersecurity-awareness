@@ -22,22 +22,21 @@ app.set("trust proxy", 1);
 /* ---------------- Security & performance ---------------- */
 app.use(
   helmet({
-    contentSecurityPolicy: false, // easier for production
+    contentSecurityPolicy: false,
     crossOriginResourcePolicy: { policy: "cross-origin" },
     crossOriginEmbedderPolicy: false,
-    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
+    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
   })
 );
-
 app.use(compression());
 
 app.use(
   cors({
     origin: process.env.CORS_ORIGINS
-      ? process.env.CORS_ORIGINS.split(",").map(s => s.trim())
-      : "*",
+      ? process.env.CORS_ORIGINS.split(",").map((s) => s.trim())
+      : true, // same-origin friendly; avoid "*" with credentials
     credentials: true,
-    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"]
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   })
 );
 
@@ -51,13 +50,7 @@ app.use("/api/parent/verify", rateLimit({ windowMs: 15 * 60 * 1000, limit: 30 })
 const tipsReadLimiter = rateLimit({ windowMs: 60 * 1000, limit: 60 });
 const tipsWriteLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10 });
 
-/* ---------------- Health checks ---------------- */
-app.get("/", (_req, res) => {
-  const indexPath = path.join(distPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) res.status(200).send("OK"); // fallback if dist missing
-  });
-});
+/* ---------------- API routes ---------------- */
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 app.get("/api/live", (_req, res) => res.send("live"));
 app.get("/api/ready", (_req, res) => {
@@ -65,24 +58,33 @@ app.get("/api/ready", (_req, res) => {
   res.status(ready ? 200 : 503).json({ dbConnected: ready });
 });
 
-/* ---------------- API routes ---------------- */
 app.use("/api/auth", authRoutes);
 app.use("/api/parent", parentRoutes);
 app.use("/api/tips", tipsRoutes({ tipsReadLimiter, tipsWriteLimiter }));
 app.use("/api/contact", contactRoutes);
-
 console.log("➡️  /api/contact route mounted");
 
-/* ---------------- Serve frontend ---------------- */
-// If frontend build is outside backend folder, adjust this path
-const distPath = path.join(__dirname, "../dist");
-app.use(express.static(distPath));
+/* ---------------- Serve frontend (SPA) ---------------- */
+/**
+ * IMPORTANT:
+ * We serve from cyberhub-backend/dist (same folder as this file).
+ * Make sure your frontend build has been copied into this folder:
+ *   npm run build (frontend) -> copy ./dist/* -> ./cyberhub-backend/dist/
+ */
+const distPath = path.join(__dirname, "dist"); // <-- correct for backend/dist
+app.use(express.static(distPath, { index: false }));
 
+// SPA fallback for anything NOT starting with /api/
 app.get(/^(?!\/api\/).*/, (_req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
+  res.sendFile(path.join(distPath, "index.html"), (err) => {
+    if (err) {
+      // If the build isn't present yet, show a basic OK so health checks pass
+      res.status(200).send("OK");
+    }
+  });
 });
 
-/* ---------------- 404 for API ---------------- */
+/* ---------------- 404 for API only ---------------- */
 app.use((req, res, next) => {
   if (req.path.startsWith("/api/")) {
     return res.status(404).json({ error: "Not found" });
@@ -113,6 +115,7 @@ mongoose
       console.log(`🚀 Server running on port ${PORT}`)
     );
 
+    // Graceful shutdown for containers
     const shutdown = (signal) => {
       console.log(`${signal} received. Closing server...`);
       server.close(() => {
@@ -124,7 +127,6 @@ mongoose
       });
       setTimeout(() => process.exit(1), 10000).unref();
     };
-
     process.on("SIGTERM", () => shutdown("SIGTERM"));
     process.on("SIGINT", () => shutdown("SIGINT"));
   })
