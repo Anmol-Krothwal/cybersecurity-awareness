@@ -1,5 +1,5 @@
 import NavbarPage from "../Components/NavbarPage";
-import FooterTeen from "../components/FooterTeen"; // ✅ Import Footer
+import FooterTeen from "../Components/FooterTeen"; // ✅ Import Footer
 
 const About_us = () => {
   return (
