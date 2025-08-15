@@ -1,27 +1,33 @@
-// Import the RTK Query methods from the React-specific entry point
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+// src/Slice/apiSlice.js
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseURL = 'http://localhost:5000/api/v1/tours';
+// Use /api in prod; fallback to localhost only for local dev
+const API_BASE =
+  (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
+  '/api';
 
-// Define our single API slice object
 export const apiSlice = createApi({
   reducerPath: 'my_api',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
-  endpoints: builder => ({
+  baseQuery: fetchBaseQuery({
+    // becomes "/api/v1/tours" in production
+    baseUrl: `${API_BASE}/v1/tours`,
+    credentials: 'include',
+  }),
+  endpoints: (builder) => ({
     getTours: builder.query({
-      query: (filter) => ({
-        url: '/',
-        params: filter,
-      })
+      query: (filter) => ({ url: '/', params: filter }),
     }),
     getTourById: builder.query({
-      query: (id) => `/${id}`
+      query: (id) => `/${id}`,
     }),
     getTopTours: builder.query({
-      query: () => '/top5-cheapTours'
-    })
-  })
-})
+      query: () => '/top5-cheapTours',
+    }),
+  }),
+});
 
-// Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetToursQuery, useGetTopToursQuery, useGetTourByIdQuery } = apiSlice
+export const {
+  useGetToursQuery,
+  useGetTopToursQuery,
+  useGetTourByIdQuery,
+} = apiSlice;

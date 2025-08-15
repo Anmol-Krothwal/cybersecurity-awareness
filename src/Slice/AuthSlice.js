@@ -1,52 +1,42 @@
-// Import the RTK Query methods from the React-specific entry point 
+// src/Slice/AuthSlice.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import ResetPassword from '../Pages/ResetPassword';
 
-// ✅ Updated baseURL to match your backend route
-const baseURL = 'http://localhost:5000/api/auth';
+// Use /api in prod; fallback to localhost only for local dev
+const API_BASE =
+  (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
+  '/api';
 
-// Define our single API slice object
+// IMPORTANT: baseUrl is "/api", so endpoint URLs below should be "/auth/..."
+// (Do NOT prefix with /api again or you'll get /api/api/...)
 export const AuthSlice = createApi({
   reducerPath: 'authapi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
-  endpoints: builder => ({
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_BASE,
+    credentials: 'include',
+  }),
+  endpoints: (builder) => ({
     signupUser: builder.mutation({
-      query: (newuser_data) => ({
-        url: '/signup',
-        method: 'POST',
-        body: newuser_data,
-      }),
+      query: (body) => ({ url: '/auth/signup', method: 'POST', body }),
     }),
     loginUser: builder.mutation({
-      query: (login_data) => ({
-        url: '/login',
-        method: 'POST',
-        body: login_data,
-      }),
+      query: (body) => ({ url: '/auth/login', method: 'POST', body }),
     }),
     logoutUser: builder.mutation({
-      query: () => ({
-        url: '/logout',
-        method: 'POST',
-      }),
+      query: () => ({ url: '/auth/logout', method: 'POST' }),
     }),
     forgetPassword: builder.mutation({
-      query: (email) => ({
-        url: '/forgotPassword',
-        method: 'POST',
-        body: email,
-      }),
+      query: (body) => ({ url: '/auth/forgotPassword', method: 'POST', body }),
     }),
-    ResetPassword: builder.mutation({
+    resetPassword: builder.mutation({
       query: ({ newPassword, confirmPassword, token }) => ({
-        url: `/resetPassword/${token}`,
+        url: `/auth/resetPassword/${token}`,
         method: 'POST',
         body: { newPassword, confirmPassword },
       }),
     }),
     editUser: builder.mutation({
       query: ({ userId, field, val }) => ({
-        url: `/${userId}`,
+        url: `/auth/${userId}`,
         method: 'PATCH',
         body: { [field]: val },
       }),
@@ -54,7 +44,6 @@ export const AuthSlice = createApi({
   }),
 });
 
-// Export the auto-generated hooks
 export const {
   useSignupUserMutation,
   useLoginUserMutation,
