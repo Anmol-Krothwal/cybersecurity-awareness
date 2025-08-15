@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import newsData from "../data/cyberNewsData";
-import NewsCard from "../components/NewsCard";
+import newsData from "../Data/cyberNewsData";
+import NewsCard from "../Components/NewsCard";
 import Navbar from "../Components/NavbarPage";
 import FooterTeen from "../Components/FooterTeen"; // ✅ Import Footer
 
